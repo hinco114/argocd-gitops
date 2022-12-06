@@ -10,6 +10,7 @@ spec:
           volumeMounts:
             - mountPath: /etc/nginx/conf.d/403.conf
               name: nginx-conf-vol
+              subPath: nginx.conf
       volumes:
         - name: nginx-conf-vol
           configMap:
