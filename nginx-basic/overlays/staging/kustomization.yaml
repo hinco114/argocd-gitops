@@ -1,0 +1,25 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base
+
+patches:
+  # patch using inline Strategic Merge
+  - patch: |-
+     apiVersion: apps/v1
+     kind: Deployment
+     metadata:
+       name: nginx
+     spec:
+      replicas: 2
+    target:
+      name: nginx
+  - path: nginx-deployment-add-configmap.yaml
+    target:
+      kind: Deployment
+
+configMapGenerator:
+  - name: nginx-config-from-file
+    files:
+      - nginx.conf

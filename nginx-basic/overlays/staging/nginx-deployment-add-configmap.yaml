@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+spec:
+  template:
+    spec:
+      containers:
+        - name: nginx
+          volumeMounts:
+            - mountPath: /etc/nginx/conf.d/403.conf
+              name: nginx-conf-vol
+      volumes:
+        - name: nginx-conf-vol
+          configMap:
+            name: nginx-config-from-file
