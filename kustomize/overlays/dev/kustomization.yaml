@@ -3,3 +3,16 @@ kind: Kustomization
 
 resources:
   - ../../base
+
+patches:
+  # patch using inline Strategic Merge
+  # https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patchesstrategicmerge/
+  - patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: nginx
+      spec:
+        replicas: 1
+    target:
+      name: nginx

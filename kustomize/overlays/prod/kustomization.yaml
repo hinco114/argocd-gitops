@@ -4,3 +4,20 @@ kind: Kustomization
 resources:
   - ../../base
 
+patches:
+  - target:
+      kind: Deployment
+    path: nginx-deployment-add-configmap.yaml
+
+# Generate ConfigMap from File
+configMapGenerator:
+  - name: nginx-config-from-file
+    files:
+      - nginx.conf
+  - name: nginx-config-literal
+    literals:
+      - TEST_ENV=test string
+
+images:
+  - name: nginx
+    newTag: "1.23"

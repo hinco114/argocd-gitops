@@ -5,21 +5,14 @@ resources:
   - ../../base
 
 patches:
-  # patch using inline Strategic Merge
-  - patch: |-
-     apiVersion: apps/v1
-     kind: Deployment
-     metadata:
-       name: nginx
-     spec:
-      replicas: 1
-    target:
-      name: nginx
-  - path: nginx-deployment-add-configmap.yaml
-    target:
-      kind: Deployment
-
-configMapGenerator:
-  - name: nginx-config-from-file
-    files:
-      - nginx.conf
+  # patch using Json6902
+  # https://kubectl.docs.kubernetes.io/references/kustomize/kustomization/patchesjson6902/
+  - target:
+      kind: Service
+    patch: |-
+      - op: add
+        path: /spec/ports/0/nodePort
+        value: 30002
+  - target:
+      kind: Service
+    path: service.yaml
