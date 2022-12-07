@@ -4,14 +4,14 @@ kind: Kustomization
 resources:
 - ../../base
 
+# 특정 리소스 삭제하기 (공식 문서엔 존재하지 않음)
+# https://github.com/kubernetes-sigs/kustomize/issues/1593#issuecomment-944157718
 patches:
 - path: nginx-deployment-add-configmap.yaml
   target:
     kind: Deployment
-# 특정 리소스 삭제하기 (공식 문서엔 존재하지 않음)
-# https://github.com/kubernetes-sigs/kustomize/issues/1593#issuecomment-944157718
 - patch: |-
-    apiVersion: apps/v1
+    apiVersion: v1
     kind: Service
     metadata:
       name: nginx
