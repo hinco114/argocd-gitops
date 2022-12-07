@@ -20,4 +20,4 @@ configMapGenerator:
 
 images:
 - name: nginx
-  newName: "1.12"
+  newTag: "1.23"
