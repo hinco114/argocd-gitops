@@ -12,7 +12,7 @@ patches:
      metadata:
        name: nginx
      spec:
-      replicas: 2
+      replicas: 1
     target:
       name: nginx
   - path: nginx-deployment-add-configmap.yaml
