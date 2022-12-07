@@ -11,8 +11,11 @@ patches:
       kind: Service
     patch: |-
       - op: add
-        path: /spec/ports/0/nodePort
-        value: 30002
-  - target:
-      kind: Service
-    path: service.yaml
+        path: /spec/ports/0
+        value:
+          nodePort: 30001
+          name: nginx-service
+      #    replicas: 1
+#  - target:
+#      kind: Service
+#    path: service.yaml
