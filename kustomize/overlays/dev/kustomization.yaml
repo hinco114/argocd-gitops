@@ -16,3 +16,4 @@ patches:
         replicas: 1
     target:
       name: nginx
+      kind: Deployment
